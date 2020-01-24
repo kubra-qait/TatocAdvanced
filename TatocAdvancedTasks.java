@@ -1,6 +1,7 @@
 package tatoc;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
@@ -38,23 +39,23 @@ public class TatocAdvancedTasks {
 			Statement stmt = con.createStatement(); // execute statement
 			ResultSet rs = stmt.executeQuery("select * from credentials");
 			while (rs.next()) {
-				System.out.println(rs.getInt(1) + "  " + rs.getString(2) + "  " + rs.getString(3));
+				//System.out.println(rs.getInt(1) + "  " + rs.getString(2) + "  " + rs.getString(3));
 			}
 			rs = stmt.executeQuery("select * from identity");
 			while (rs.next()) {
-				System.out.println(rs.getInt(1) + "  " + rs.getString(2));
+				//System.out.println(rs.getInt(1) + "  " + rs.getString(2));
 			}
 			rs = stmt.executeQuery("select id from identity where symbol = '"+symbol+"'");
 			while (rs.next()) {
 			id = rs.getInt(1);
-			System.out.println(id);
+			//System.out.println(id);
 			}			
 			rs = stmt.executeQuery("select name , passkey from credentials where id = '"+id+"'");
 			while (rs.next()) {
 				name = rs.getString(1);
 				passkey = rs.getString(2);
-				System.out.println(name);
-				System.out.println(passkey);		
+				//System.out.println(name);
+				//System.out.println(passkey);		
 			}
 		}
 		catch (Exception e) {
@@ -66,8 +67,13 @@ public class TatocAdvancedTasks {
 	}
 		public void automateDatabaseTask() {
 			symbol = driver.findElement(By.id("symboldisplay")).getText();
-			System.out.println(symbol);
+			//System.out.println(symbol);
 			symbol = symbol.toLowerCase();
-			System.out.println(symbol);
+			//System.out.println(symbol);
 	}
+		public void videoPlayer() {
+			JavascriptExecutor js = (JavascriptExecutor)driver;
+			js.executeScript("window.played = true;");
+			driver.findElement(By.xpath("//a[text() = 'Proceed']")).click();
+		}
 }
