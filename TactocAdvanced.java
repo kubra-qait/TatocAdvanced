@@ -9,6 +9,6 @@ public class TactocAdvanced  {
 		Tatoc.automateDatabaseTask();
 		Tatoc.createConnection();
 		Tatoc.videoPlayer();
-		
+		Tatoc.restAssuredTask();
 	}
 }
